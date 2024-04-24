@@ -1,0 +1,31 @@
+from tkinter import Tk, Label, Entry, Button
+from pyswip import Prolog
+
+def consultar_peliculas():
+    genero = entry_genero.get()
+
+    prolog = Prolog()
+    prolog.consult("base_peliculas.pl")
+
+    for solucion in prolog.query(f"recomendar_pelicula({genero})"):
+        resultado_label.config(text=solucion["Pelicula"])
+
+# Crear ventana
+ventana = Tk()
+ventana.title("Recomendador de Películas")
+
+# Etiqueta y campo de entrada para el género
+label_genero = Label(ventana, text="Género:")
+label_genero.pack()
+entry_genero = Entry(ventana)
+entry_genero.pack()
+
+# Botón para consultar películas
+boton_consultar = Button(ventana, text="Consultar películas", command=consultar_peliculas)
+boton_consultar.pack()
+
+# Etiqueta para mostrar resultado
+resultado_label = Label(ventana, text="")
+resultado_label.pack()
+
+ventana.mainloop()
