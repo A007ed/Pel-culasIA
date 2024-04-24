@@ -1,0 +1,13 @@
+% base_peliculas.pl
+:- dynamic pelicula/2.
+
+pelicula(accion, 'The Dark Knight').
+pelicula(accion, 'Mad Max: Fury Road').
+pelicula(comedia, 'Superbad').
+pelicula(comedia, 'Deadpool').
+pelicula(drama, 'The Shawshank Redemption').
+pelicula(drama, 'Forrest Gump').
+
+recomendar_pelicula(Genero) :-
+    pelicula(Genero, Pelicula),
+    write(Pelicula).
